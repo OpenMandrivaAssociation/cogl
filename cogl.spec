@@ -14,12 +14,13 @@
 Summary:	A library for using 3D graphics hardware to draw pretty pictures
 Name:		cogl
 Version:	1.10.2
-Release:	1
+Release:	2
 Group:		System/Libraries
 License:	LGPLv2+
 URL:		http://www.clutter-project.org/
 Source0:	http://source.clutter-project.org/sources/cogl/%{url_ver}/%{name}-%{version}.tar.xz
 Patch0:		cogl-1.7.6-linkage.patch
+Patch1:		cogl-1.10.2-fix_free.patch
 
 BuildRequires:	pkgconfig(gdk-pixbuf-2.0)
 BuildRequires:	pkgconfig(gl)
