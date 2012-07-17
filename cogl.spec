@@ -17,7 +17,6 @@ Group:		System/Libraries
 License:	LGPLv2+
 URL:		http://www.clutter-project.org/
 Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/cogl/%{name}-%{version}.tar.xz
-Patch0:		cogl-1.7.6-linkage.patch
 Patch1:		cogl-1.10.2-fix_free.patch
 
 BuildRequires:	pkgconfig(gdk-pixbuf-2.0)
