@@ -1,5 +1,3 @@
-%define url_ver	%(echo %{version}|cut -d. -f1,2)
-
 %define major 		9
 %define pangomajor	0
 %define gir_major	1.0
@@ -18,7 +16,7 @@ Release:	2
 Group:		System/Libraries
 License:	LGPLv2+
 URL:		http://www.clutter-project.org/
-Source0:	http://source.clutter-project.org/sources/cogl/%{url_ver}/%{name}-%{version}.tar.xz
+Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/cogl/%{name}-%{version}.tar.xz
 Patch0:		cogl-1.7.6-linkage.patch
 Patch1:		cogl-1.10.2-fix_free.patch
 
