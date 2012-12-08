@@ -1,4 +1,4 @@
-%define major 		9
+%define major 		11
 %define pangomajor	0
 %define gir_major	1.0
 
@@ -11,21 +11,25 @@
 
 Summary:	A library for using 3D graphics hardware to draw pretty pictures
 Name:		cogl
-Version:	1.10.4
+Version:	1.12.0
 Release:	1
 Group:		System/Libraries
 License:	LGPLv2+
 URL:		http://www.clutter-project.org/
-Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/cogl/%{name}-%{version}.tar.xz
-Patch1:		cogl-1.10.2-fix_free.patch
+Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/cogl/1.12/%{name}-%{version}.tar.xz
 
-BuildRequires:	pkgconfig(gdk-pixbuf-2.0)
-BuildRequires:	pkgconfig(gl)
-BuildRequires:	pkgconfig(gobject-2.0)
-BuildRequires:	pkgconfig(gobject-introspection-1.0)
-BuildRequires:	pkgconfig(gtk-doc)
-BuildRequires:	pkgconfig(pangocairo)
-BuildRequires:	pkgconfig(xcomposite)
+BuildRequires:  pkgconfig(gl)
+BuildRequires:  pkgconfig(x11)
+BuildRequires:  pkgconfig(xext)
+BuildRequires:  pkgconfig(xfixes) >= 3
+BuildRequires:  pkgconfig(xdamage)
+BuildRequires:  pkgconfig(xcomposite) >= 0.4
+BuildRequires:  pkgconfig(gobject-2.0) >= 2.28.0
+BuildRequires:  pkgconfig(gmodule-no-export-2.0)
+BuildRequires:  pkgconfig(gdk-pixbuf-2.0)
+BuildRequires:  pkgconfig(cairo) >= 1.10
+BuildRequires:  pkgconfig(pangocairo) >= 1.20
+BuildRequires:  pkgconfig(gobject-introspection-1.0)
 
 %description
 Cogl is a small open source library for using 3D graphics hardware to draw
@@ -103,7 +107,7 @@ Header files and libraries for building and developing apps with %{name}-pango.
 
 %prep
 %setup -q
-%apply_patches
+#%apply_patches
 
 %build
 CFLAGS="$RPM_OPT_FLAGS -fPIC"
@@ -112,7 +116,7 @@ CFLAGS="$RPM_OPT_FLAGS -fPIC"
 	--enable-gdk-pixbuf=yes \
 	--enable-cogl-pango=yes \
 	--enable-glx=yes \
-	--enable-gtk-doc \
+	--enable-gtk-doc=no \
 	--enable-introspection=yes \
 	--enable-examples-install=no
 
@@ -149,8 +153,6 @@ find %{buildroot} -name "*.la" -delete
 %{_libdir}/pkgconfig/cogl-gl-1.0.pc
 %{_libdir}/pkgconfig/cogl-2.0-experimental.pc
 %{_datadir}/gir-1.0/Cogl-%{gir_major}.gir
-%{_datadir}/gtk-doc/html/cogl
-%{_datadir}/gtk-doc/html/cogl-2.0-experimental
 
 %files -n %{develpango}
 %{_includedir}/%{name}/%{name}-pango
@@ -158,3 +160,6 @@ find %{buildroot} -name "*.la" -delete
 %{_libdir}/pkgconfig/cogl-pango*.pc
 %{_datadir}/gir-1.0/CoglPango-%{gir_major}.gir
 
+%changelog
+* Fri Sep 28 2012 Arkady L. Shane <ashejn@rosalab.ru> 1.12.0-1
+- update to 1.12.0
