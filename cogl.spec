@@ -1,35 +1,37 @@
+%define url_ver %(echo %{version}|cut -d. -f1,2)
+
 %define major 		11
 %define pangomajor	0
 %define gir_major	1.0
 
 %define libname		%mklibname %{name} %{major}
 %define pangoname	%mklibname %{name}-pango %{pangomajor}
-%define develname 	%mklibname -d %{name}
-%define develpango 	%mklibname -d %{name}-pango
+%define devname 	%mklibname -d %{name}
+%define devpango 	%mklibname -d %{name}-pango
 %define girname 	%mklibname %{name}-gir %{gir_major}
 %define girpango	%mklibname %{name}-pango-gir %{gir_major}
 
 Summary:	A library for using 3D graphics hardware to draw pretty pictures
 Name:		cogl
-Version:	1.12.0
+Version:	1.12.2
 Release:	1
 Group:		System/Libraries
 License:	LGPLv2+
 URL:		http://www.clutter-project.org/
-Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/cogl/1.12/%{name}-%{version}.tar.xz
+Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/cogl/%{url_ver}/%{name}-%{version}.tar.xz
 
+BuildRequires:  pkgconfig(cairo) >= 1.10
+BuildRequires:  pkgconfig(gdk-pixbuf-2.0)
 BuildRequires:  pkgconfig(gl)
+BuildRequires:  pkgconfig(gobject-2.0) >= 2.28.0
+BuildRequires:  pkgconfig(gobject-introspection-1.0)
+BuildRequires:  pkgconfig(gmodule-no-export-2.0)
+BuildRequires:  pkgconfig(pangocairo) >= 1.20
 BuildRequires:  pkgconfig(x11)
 BuildRequires:  pkgconfig(xext)
 BuildRequires:  pkgconfig(xfixes) >= 3
 BuildRequires:  pkgconfig(xdamage)
 BuildRequires:  pkgconfig(xcomposite) >= 0.4
-BuildRequires:  pkgconfig(gobject-2.0) >= 2.28.0
-BuildRequires:  pkgconfig(gmodule-no-export-2.0)
-BuildRequires:  pkgconfig(gdk-pixbuf-2.0)
-BuildRequires:  pkgconfig(cairo) >= 1.10
-BuildRequires:  pkgconfig(pangocairo) >= 1.20
-BuildRequires:  pkgconfig(gobject-introspection-1.0)
 
 %description
 Cogl is a small open source library for using 3D graphics hardware to draw
@@ -61,6 +63,7 @@ This contains the translation data for %{name}.
 %package -n %{libname}
 Summary:	A library for using 3D graphics hardware to draw pretty pictures
 Group:		System/Libraries
+Suggests:	%{name}-i18n
 
 %description -n %{libname}
 This package contains the shared library for %{name}.
@@ -86,28 +89,28 @@ Group:		System/Libraries
 %description -n %{girpango}
 GObject Introspection interface description for %{name}-pango.
 
-%package -n %{develname}
+%package -n %{devname}
 Summary:	%{name} development environment
 Group:		Development/C 
 Provides:	%{name}-devel = %{version}-%{release}
 Requires:	%{libname} = %{version}-%{release}
 Requires:	%{girname} = %{version}-%{release}
 
-%description -n %{develname}
+%description -n %{devname}
 Header files and libraries for building and developing apps with %{name}.
 
-%package -n %{develpango}
+%package -n %{devpango}
 Summary:	%{name}-pango development environment
 Group:		Development/C 
 Requires:	%{pangoname} = %{version}-%{release}
 Requires:	%{girpango} = %{version}-%{release}
 
-%description -n %{develpango}
+%description -n %{devpango}
 Header files and libraries for building and developing apps with %{name}-pango.
 
 %prep
 %setup -q
-#%apply_patches
+%apply_patches
 
 %build
 CFLAGS="$RPM_OPT_FLAGS -fPIC"
@@ -145,7 +148,7 @@ find %{buildroot} -name "*.la" -delete
 %files -n %{girpango}
 %{_libdir}/girepository-1.0/CoglPango-%{gir_major}.typelib
 
-%files -n %{develname}
+%files -n %{devname}
 %doc NEWS README ChangeLog
 %{_includedir}/%{name}/%{name}
 %{_libdir}/libcogl.so
@@ -154,7 +157,7 @@ find %{buildroot} -name "*.la" -delete
 %{_libdir}/pkgconfig/cogl-2.0-experimental.pc
 %{_datadir}/gir-1.0/Cogl-%{gir_major}.gir
 
-%files -n %{develpango}
+%files -n %{devpango}
 %{_includedir}/%{name}/%{name}-pango
 %{_libdir}/libcogl-pango.so
 %{_libdir}/pkgconfig/cogl-pango*.pc
