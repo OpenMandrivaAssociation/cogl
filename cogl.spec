@@ -17,7 +17,7 @@ Version:	1.12.2
 Release:	1
 Group:		System/Libraries
 License:	LGPLv2+
-URL:		http://www.clutter-project.org/
+Url:		http://www.clutter-project.org/
 Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/cogl/%{url_ver}/%{name}-%{version}.tar.xz
 
 BuildRequires:  pkgconfig(cairo) >= 1.10
@@ -131,9 +131,6 @@ CFLAGS="$RPM_OPT_FLAGS -fPIC"
 #Remove examples
 rm -rf %{buildroot}%{_datadir}/%{name}/examples-data/
 
-#Remove libtool archives.
-find %{buildroot} -name "*.la" -delete
-
 %find_lang %{name}
 
 %files -n %{libname}
@@ -163,6 +160,3 @@ find %{buildroot} -name "*.la" -delete
 %{_libdir}/pkgconfig/cogl-pango*.pc
 %{_datadir}/gir-1.0/CoglPango-%{gir_major}.gir
 
-%changelog
-* Fri Sep 28 2012 Arkady L. Shane <ashejn@rosalab.ru> 1.12.0-1
-- update to 1.12.0
