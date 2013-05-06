@@ -29,6 +29,7 @@ BuildRequires:  pkgconfig(gmodule-no-export-2.0)
 BuildRequires:  pkgconfig(pangocairo) >= 1.20
 BuildRequires:  pkgconfig(x11)
 BuildRequires:  pkgconfig(xext)
+BuildRequires:  pkgconfig(xrandr)
 BuildRequires:  pkgconfig(xfixes) >= 3
 BuildRequires:  pkgconfig(xdamage)
 BuildRequires:  pkgconfig(xcomposite) >= 0.4
