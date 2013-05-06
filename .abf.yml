@@ -1,2 +1,4 @@
-sources:
+removed_sources:
   cogl-1.12.2.tar.xz: 95b5a77709772b185051416c0dd57d30aa4aad0f
+sources:
+  cogl-1.14.0.tar.xz: ff9a60b54fe79eb336af9c1b686f71f6af6f84f9

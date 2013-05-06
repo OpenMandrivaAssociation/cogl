@@ -1,7 +1,7 @@
 %define url_ver %(echo %{version}|cut -d. -f1,2)
 
-%define major 		11
-%define pangomajor	0
+%define major 		12
+%define pangomajor	12
 %define gir_major	1.0
 
 %define libname		%mklibname %{name} %{major}
@@ -13,7 +13,7 @@
 
 Summary:	A library for using 3D graphics hardware to draw pretty pictures
 Name:		cogl
-Version:	1.12.2
+Version:	1.14.0
 Release:	1
 Group:		System/Libraries
 License:	LGPLv2+
