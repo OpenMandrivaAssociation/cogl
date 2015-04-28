@@ -18,7 +18,7 @@
 
 Summary:	A library for using 3D graphics hardware to draw pretty pictures
 Name:		cogl
-Version:	1.18.2
+Version:	 1.20.0
 Release:	2
 Group:		System/Libraries
 License:	LGPLv2+
@@ -120,7 +120,7 @@ GObject Introspection interface description for %{name}-pango.
 
 %package -n %{devname}
 Summary:	%{name} development environment
-Group:		Development/C 
+Group:		Development/C
 Provides:	%{name}-devel = %{version}-%{release}
 Requires:	%{libname} = %{version}-%{release}
 Requires:	%{girname} = %{version}-%{release}
@@ -132,7 +132,7 @@ Header files and libraries for building and developing apps with %{name}.
 
 %package -n %{devpango}
 Summary:	%{name}-pango development environment
-Group:		Development/C 
+Group:		Development/C
 Requires:	%{pangoname} = %{version}-%{release}
 Requires:	%{girpango} = %{version}-%{release}
 Requires:       %{gir2pango} = %{version}-%{release}
