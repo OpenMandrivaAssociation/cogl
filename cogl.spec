@@ -153,6 +153,8 @@ Header files and libraries for building and developing apps with %{name}-path.
 %apply_patches
 
 %build
+export G_IR_SCANNER_DISABLE_CACHE=yes
+
 CFLAGS="$RPM_OPT_FLAGS -fPIC"
 %configure \
 	--enable-cairo=yes \
