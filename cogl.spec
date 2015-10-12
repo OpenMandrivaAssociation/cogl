@@ -1,5 +1,7 @@
 %define url_ver %(echo %{version}|cut -d. -f1,2)
 
+%define _disable_rebuild_configure 1
+
 %define major 		20
 %define pangomajor	20
 %define gir_major	1.0
@@ -18,8 +20,8 @@
 
 Summary:	A library for using 3D graphics hardware to draw pretty pictures
 Name:		cogl
-Version:	 1.20.0
-Release:	2
+Version:	1.22.0
+Release:	1
 Group:		System/Libraries
 License:	LGPLv2+
 Url:		http://www.clutter-project.org/
