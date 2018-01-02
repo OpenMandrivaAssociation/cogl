@@ -3,31 +3,36 @@
 %define _disable_rebuild_configure 1
 
 %define major 		20
-%define pangomajor	20
+%define pangomajor	%{major}
+%define gstmajor	%{major}
 %define gir_major	1.0
 %define gir2_major	2.0
 
 %define libname		%mklibname %{name} %{major}
 %define pangoname	%mklibname %{name}-pango %{pangomajor}
+%define gstname		%mklibname %{name}-gst %{gstmajor}
 %define devname 	%mklibname -d %{name}
 %define devpango 	%mklibname -d %{name}-pango
+%define devgst		%mklibname -d %{name}-gst
 %define devpath		%mklibname -d %{name}-path
 %define girname 	%mklibname %{name}-gir %{gir_major}
 %define girpango	%mklibname %{name}-pango-gir %{gir_major}
-%define gir2name         %mklibname %{name}-gir %{gir2_major}
-%define gir2pango        %mklibname %{name}-pango-gir %{gir2_major}
+%define gir2name	%mklibname %{name}-gir %{gir2_major}
+%define gir2pango	%mklibname %{name}-pango-gir %{gir2_major}
+%define gir2gst		%mklibname %{name}-gst-gir %{gir2_major}
 %define pathname	%mklibname %{name}-path %{major}
 
 Summary:	A library for using 3D graphics hardware to draw pretty pictures
 Name:		cogl
 Version:	1.22.2
-Release:	1
+Release:	2
 Group:		System/Libraries
 License:	LGPLv2+
 Url:		http://www.clutter-project.org/
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/cogl/%{url_ver}/%{name}-%{version}.tar.xz
 
 BuildRequires:  pkgconfig(cairo) >= 1.10
+BuildRequires:	pkgconfig(gstreamer-1.0)
 BuildRequires:  pkgconfig(gdk-pixbuf-2.0)
 BuildRequires:  pkgconfig(gl)
 BuildRequires:  pkgconfig(gobject-2.0) >= 2.28.0
@@ -83,6 +88,13 @@ Group:		System/Libraries
 %description -n %{pangoname}
 This package contains the shared library for %{name}-pango.
 
+%package -n %{gstname}
+Summary:	A library for integrating gstreamer with cogl
+Group:		System/Libraries
+
+%description -n %{gstname}
+This package contains the shared library for %{name}-gst.
+
 %package -n %{pathname}
 Summary:        A library for using 3D graphics hardware to draw pretty pictures
 Group:          System/Libraries
@@ -119,6 +131,12 @@ Group:          System/Libraries
 %description -n %{gir2pango}
 GObject Introspection interface description for %{name}-pango.
 
+%package -n %{gir2gst}
+Summary:        GObject Introspection interface description for %{name}-gst
+Group:          System/Libraries
+
+%description -n %{gir2gst}
+GObject Introspection interface description for %{name}-gst.
 
 %package -n %{devname}
 Summary:	%{name} development environment
@@ -142,6 +160,15 @@ Requires:       %{gir2pango} = %{version}-%{release}
 %description -n %{devpango}
 Header files and libraries for building and developing apps with %{name}-pango.
 
+%package -n %{devgst}
+Summary:	%{name}-gst development environment
+Group:		Development/C
+Requires:	%{gstname} = %{version}-%{release}
+Requires:       %{gir2gst} = %{version}-%{release}
+
+%description -n %{devgst}
+Header files and libraries for building and developing apps with %{name}-gst.
+
 %package -n %{devpath}
 Summary:        %{name}-path development environment
 Group:          Development/C
@@ -162,8 +189,16 @@ CFLAGS="$RPM_OPT_FLAGS -fPIC"
 	--enable-cairo=yes \
 	--enable-gdk-pixbuf=yes \
 	--enable-cogl-pango=yes \
+	--enable-cogl-gst=yes \
+	--enable-gl=yes \
 	--enable-glx=yes \
-	--enable-gtk-doc=no \
+	--enable-sdl2=yes \
+	--enable-null-egl-platform=yes \
+	--enable-wayland-egl-platform=yes \
+	--enable-kms-egl-platform=yes \
+	--enable-xlib-egl-platform=yes \
+	--enable-wayland-egl-server=yes \
+	--enable-gtk-doc=yes \
 	--enable-introspection=yes \
 	--enable-examples-install=no
 
@@ -183,6 +218,10 @@ rm -rf %{buildroot}%{_datadir}/%{name}/examples-data/
 %files -n %{pangoname}
 %{_libdir}/libcogl-pango.so.%{pangomajor}*
 
+%files -n %{gstname}
+%{_libdir}/libcogl-gst.so.%{gstmajor}*
+%{_libdir}/gstreamer-*/libgstcogl.so
+
 %files -n %{pathname}
 %{_libdir}/libcogl-path.so.%{major}*
 
@@ -198,6 +237,9 @@ rm -rf %{buildroot}%{_datadir}/%{name}/examples-data/
 %files -n %{gir2pango}
 %{_libdir}/girepository-1.0/CoglPango-%{gir2_major}.typelib
 
+%files -n %{gir2gst}
+%{_libdir}/girepository-1.0/CoglGst-%{gir2_major}.typelib
+
 %files -n %{devname}
 %doc NEWS README ChangeLog
 %{_includedir}/%{name}/%{name}
@@ -207,6 +249,8 @@ rm -rf %{buildroot}%{_datadir}/%{name}/examples-data/
 %{_libdir}/pkgconfig/cogl-2.0-experimental.pc
 %{_datadir}/gir-1.0/Cogl-%{gir_major}.gir
 %{_datadir}/gir-1.0/Cogl-%{gir2_major}.gir
+%doc %{_datadir}/gtk-doc/html/cogl
+%doc %{_datadir}/gtk-doc/html/cogl-2.0-experimental
 
 %files -n %{devpango}
 %{_includedir}/%{name}/%{name}-pango
@@ -215,8 +259,14 @@ rm -rf %{buildroot}%{_datadir}/%{name}/examples-data/
 %{_datadir}/gir-1.0/CoglPango-%{gir_major}.gir
 %{_datadir}/gir-1.0/CoglPango-%{gir2_major}.gir
 
+%files -n %{devgst}
+%{_includedir}/%{name}/%{name}-gst
+%{_libdir}/libcogl-gst.so
+%{_libdir}/pkgconfig/cogl-gst*.pc
+%{_datadir}/gir-1.0/CoglGst-%{gir2_major}.gir
+%doc %{_datadir}/gtk-doc/html/cogl-gst
+
 %files -n %{devpath}
 %{_includedir}/%{name}/%{name}-path
 %{_libdir}/libcogl-path.so
 %{_libdir}/pkgconfig/cogl-path*.pc
-
