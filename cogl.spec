@@ -47,6 +47,10 @@ BuildRequires:  pkgconfig(xdamage)
 BuildRequires:  pkgconfig(xcomposite) >= 0.4
 BuildRequires:	pkgconfig(sdl2)
 BuildRequires:	pkgconfig(wayland-egl) pkgconfig(wayland-client)
+BuildRequires:	pkgconfig(gstreamer-1.0) pkgconfig(gstreamer-fft-1.0)
+BuildRequires:	pkgconfig(gstreamer-audio-1.0) pkgconfig(gstreamer-base-1.0)
+BuildRequires:	pkgconfig(gstreamer-video-1.0) pkgconfig(gstreamer-plugins-base-1.0)
+BuildRequires:	pkgconfig(gstreamer-tag-1.0) pkgconfig(gstreamer-controller-1.0)
 BuildRequires:	gtk-doc
 
 %description
