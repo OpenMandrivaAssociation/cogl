@@ -47,6 +47,7 @@ BuildRequires:  pkgconfig(xdamage)
 BuildRequires:  pkgconfig(xcomposite) >= 0.4
 BuildRequires:	pkgconfig(sdl2)
 BuildRequires:	pkgconfig(wayland-egl) pkgconfig(wayland-client)
+BuildRequires:	gtk-doc
 
 %description
 Cogl is a small open source library for using 3D graphics hardware to draw
