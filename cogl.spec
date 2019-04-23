@@ -24,8 +24,8 @@
 
 Summary:	A library for using 3D graphics hardware to draw pretty pictures
 Name:		cogl
-Version:	1.22.2
-Release:	5
+Version:	1.22.4
+Release:	1
 Group:		System/Libraries
 License:	LGPLv2+
 Url:		http://www.clutter-project.org/
@@ -210,10 +210,10 @@ CFLAGS="$RPM_OPT_FLAGS -fPIC"
 	--enable-introspection=yes \
 	--enable-examples-install=no
 
-%make
+%make_build
 
 %install
-%makeinstall_std
+%make_install
 
 #Remove examples
 rm -rf %{buildroot}%{_datadir}/%{name}/examples-data/
