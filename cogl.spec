@@ -187,7 +187,7 @@ Header files and libraries for building and developing apps with %{name}-path.
 
 %prep
 %setup -q
-%apply_patches
+%autopatch -p1
 
 %build
 export GI_SCANNER_DISABLE_CACHE=yes
