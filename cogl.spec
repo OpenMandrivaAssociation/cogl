@@ -32,6 +32,7 @@ Url:		http://www.clutter-project.org/
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/cogl/%{url_ver}/%{name}-%{version}.tar.xz
 
 BuildRequires:  pkgconfig(cairo) >= 1.10
+BuildRequires:  pkgconfig(libdrm)
 BuildRequires:	pkgconfig(gstreamer-1.0)
 BuildRequires:  pkgconfig(gdk-pixbuf-2.0)
 BuildRequires:  pkgconfig(gl)
