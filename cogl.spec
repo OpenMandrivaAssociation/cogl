@@ -37,6 +37,7 @@ BuildRequires:  pkgconfig(libdrm)
 BuildRequires:	pkgconfig(gstreamer-1.0)
 BuildRequires:  pkgconfig(gdk-pixbuf-2.0)
 BuildRequires:  pkgconfig(gl)
+BuildRequires:  pkgconfig(libglvnd)
 BuildRequires:  pkgconfig(gobject-2.0) >= 2.28.0
 BuildRequires:  pkgconfig(gobject-introspection-1.0)
 BuildRequires:  pkgconfig(gmodule-no-export-2.0)
