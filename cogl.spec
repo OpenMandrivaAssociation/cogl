@@ -24,17 +24,21 @@
 
 Summary:	A library for using 3D graphics hardware to draw pretty pictures
 Name:		cogl
-Version:	1.22.4
+Version:	1.22.6
 Release:	1
 Group:		System/Libraries
 License:	LGPLv2+
 Url:		http://www.clutter-project.org/
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/cogl/%{url_ver}/%{name}-%{version}.tar.xz
+#Patch0:		cogl-1.22.6-add-eglmesaext.h-openmandriva.patch
+Patch1:		9c4764224aded552fb855b1c2b85b26d2b894adf.diff
 
 BuildRequires:  pkgconfig(cairo) >= 1.10
+BuildRequires:  pkgconfig(libdrm)
 BuildRequires:	pkgconfig(gstreamer-1.0)
 BuildRequires:  pkgconfig(gdk-pixbuf-2.0)
 BuildRequires:  pkgconfig(gl)
+BuildRequires:  pkgconfig(libglvnd)
 BuildRequires:  pkgconfig(gobject-2.0) >= 2.28.0
 BuildRequires:  pkgconfig(gobject-introspection-1.0)
 BuildRequires:  pkgconfig(gmodule-no-export-2.0)
@@ -53,6 +57,7 @@ BuildRequires:	pkgconfig(gstreamer-video-1.0) pkgconfig(gstreamer-plugins-base-1
 BuildRequires:	pkgconfig(gstreamer-tag-1.0) pkgconfig(gstreamer-controller-1.0)
 BuildRequires:	gtk-doc
 BuildRequires:	pkgconfig(gbm)
+BuildRequires:	egl-devel
 
 %description
 Cogl is a small open source library for using 3D graphics hardware to draw
