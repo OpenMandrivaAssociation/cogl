@@ -30,7 +30,6 @@ Group:		System/Libraries
 License:	LGPLv2+
 Url:		http://www.clutter-project.org/
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/cogl/%{url_ver}/%{name}-%{version}.tar.xz
-#Patch0:		cogl-1.22.6-add-eglmesaext.h-openmandriva.patch
 Patch1:		9c4764224aded552fb855b1c2b85b26d2b894adf.diff
 
 BuildRequires:  pkgconfig(cairo) >= 1.10
