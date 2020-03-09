@@ -24,7 +24,7 @@
 
 Summary:	A library for using 3D graphics hardware to draw pretty pictures
 Name:		cogl
-Version:	1.22.4
+Version:	1.22.6
 Release:	1
 Group:		System/Libraries
 License:	LGPLv2+
