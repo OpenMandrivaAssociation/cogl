@@ -30,6 +30,7 @@ Group:		System/Libraries
 License:	LGPLv2+
 Url:		http://www.clutter-project.org/
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/cogl/%{url_ver}/%{name}-%{version}.tar.xz
+Patch0:		cogl-1.22.6-add-eglmesaext.h-openmandriva.patch
 
 BuildRequires:  pkgconfig(cairo) >= 1.10
 BuildRequires:  pkgconfig(libdrm)
@@ -189,7 +190,7 @@ Header files and libraries for building and developing apps with %{name}-path.
 
 %prep
 %setup -q
-%autopatch -p1
+%autopatch -p0
 
 %build
 export GI_SCANNER_DISABLE_CACHE=yes
