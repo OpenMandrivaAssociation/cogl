@@ -28,11 +28,11 @@
 Summary:	A library for using 3D graphics hardware to draw pretty pictures
 Name:		cogl
 Version:	1.22.8
-Release:	10
+Release:	11
 Group:		System/Libraries
 License:	LGPLv2+
-Url:		http://www.clutter-project.org/
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/cogl/%{url_ver}/%{name}-%{version}.tar.xz
+Url:		https://www.clutter-project.org/
+Source0:	https://ftp.gnome.org/pub/GNOME/sources/cogl/%{url_ver}/%{name}-%{version}.tar.xz
 
 BuildRequires:  pkgconfig(cairo) >= 1.10
 BuildRequires:  pkgconfig(libdrm)
