@@ -59,6 +59,7 @@ BuildRequires:	pkgconfig(gstreamer-tag-1.0) pkgconfig(gstreamer-controller-1.0)
 BuildRequires:	gtk-doc
 BuildRequires:	pkgconfig(gbm)
 BuildRequires:	egl-devel
+BuildRequires:  %{_lib}harfbuzz-gir-devel
 
 %description
 Cogl is a small open source library for using 3D graphics hardware to draw
