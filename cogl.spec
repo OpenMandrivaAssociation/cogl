@@ -28,7 +28,7 @@
 Summary:	A library for using 3D graphics hardware to draw pretty pictures
 Name:		cogl
 Version:	1.22.8
-Release:	12
+Release:	14
 Group:		System/Libraries
 License:	LGPLv2+
 Url:		https://www.clutter-project.org/
