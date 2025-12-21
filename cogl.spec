@@ -34,6 +34,11 @@ License:	LGPLv2+
 Url:		https://www.clutter-project.org/
 Source0:	https://ftp.gnome.org/pub/GNOME/sources/cogl/%{url_ver}/%{name}-%{version}.tar.xz
 
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:  pkgconfig(cairo) >= 1.10
 BuildRequires:  pkgconfig(libdrm)
 BuildRequires:	pkgconfig(gstreamer-1.0)
